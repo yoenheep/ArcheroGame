@@ -31,6 +31,7 @@ public class CameraMovement : MonoBehaviour
 
     private void LateUpdate()
     {
+        cameraPosition.x = Player.transform.position.x;
         cameraPosition.y = Player.transform.position.y + offsetY;
         cameraPosition.z = Player.transform.position.z + offsetZ;
 

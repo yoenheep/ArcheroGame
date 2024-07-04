@@ -40,4 +40,12 @@ public class PlayerMovement : MonoBehaviour
             rb.rotation = Quaternion.LookRotation(new Vector3(JoyStickMovement.Instance.joyVec.x, 0, JoyStickMovement.Instance.joyVec.y));
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag("NextRoom"))
+        {
+            StageMgr.Instance.NextStage();
+        }
+    }
 }

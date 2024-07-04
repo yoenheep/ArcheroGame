@@ -8,11 +8,6 @@ public class RoomCondition : MonoBehaviour
     public bool playerInThisRoom = false;
     public bool isClearRoom = false;
 
-    private void Start()
-    {
-        
-    }
-
     void Update()
     {
         if (playerInThisRoom)
@@ -35,8 +30,8 @@ public class RoomCondition : MonoBehaviour
         }
         if (other.CompareTag("Monster"))
         {
-            MonsterListInRoom.Add(other.transform.parent.gameObject);
-            Debug.Log("Mob name ;" + other.transform.parent.gameObject);
+            MonsterListInRoom.Add(other.gameObject);
+            Debug.Log("Mob name ;" + other.gameObject);
         }
     }
 
@@ -49,7 +44,7 @@ public class RoomCondition : MonoBehaviour
         }
         if (other.CompareTag("Monster"))
         {
-            MonsterListInRoom.Remove(other.transform.parent.gameObject);
+            MonsterListInRoom.Remove(other.gameObject);
         }
     }
 }
