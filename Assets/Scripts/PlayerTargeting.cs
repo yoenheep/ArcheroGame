@@ -26,7 +26,7 @@ public class PlayerTargeting : MonoBehaviour
     float currentDist = 0;
     float closetDist = 100f;
     float TargetDist = 100f;
-    int closeDistIndex = -1;
+    int closeDistIndex = 0;
     int TargetIndex = -1;
     public LayerMask layerMask;
 
@@ -67,6 +67,7 @@ public class PlayerTargeting : MonoBehaviour
 
     void Attack()
     {
+        PlayerMovement.Instance.Anim.SetFloat("AttackSpd", atkSpd);
         Instantiate(PlayerBolt, AttackPoint.position, transform.rotation);
     }
 
