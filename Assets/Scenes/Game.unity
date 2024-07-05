@@ -1156,9 +1156,10 @@ MonoBehaviour:
   getATarget: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 183
   atkSpd: 1
   MonsterList: []
+  AtkMonsterList: []
   PlayerBolt: {fileID: 8170487095265246277, guid: 8038f47e708ab0a428c923a357c490c6, type: 3}
   AttackPoint: {fileID: 1210341087}
 --- !u!1 &188549911 stripped

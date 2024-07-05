@@ -4,6 +4,24 @@ using UnityEngine;
 
 public class RoomCondition : MonoBehaviour
 {
+    public static RoomCondition Instance // ΩÃ±€≈Ê
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<RoomCondition>();
+                if (instance == null)
+                {
+                    var instanceContainer = new GameObject("RoomCondition");
+                    instance = instanceContainer.AddComponent<RoomCondition>();
+                }
+            }
+            return instance;
+        }
+    }
+    private static RoomCondition instance;
+
     List<GameObject> MonsterListInRoom = new List<GameObject>();
     public bool playerInThisRoom = false;
     public bool isClearRoom = false;

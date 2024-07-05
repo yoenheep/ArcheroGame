@@ -33,6 +33,7 @@ public class PlayerTargeting : MonoBehaviour
     public float atkSpd = 1f;
 
     public List<GameObject> MonsterList = new List<GameObject>();
+    public List<GameObject> AtkMonsterList = new List<GameObject>();
 
     public GameObject PlayerBolt;
     public Transform AttackPoint;
@@ -46,13 +47,27 @@ public class PlayerTargeting : MonoBehaviour
                 RaycastHit hit;
                 bool isHit = Physics.Raycast(transform.position, MonsterList[i].transform.position - transform.position, out hit, 20f, layerMask);
 
+                Debug.Log(isHit);
+
                 if(isHit && hit.transform.CompareTag("Monster"))
                 {
-                    Gizmos.color = Color.green;
+                    Debug.Log("blue Ray" + MonsterList[i].name);
+                    Gizmos.color = Color.blue;
+
+                    if (!AtkMonsterList.Contains(MonsterList[i]))
+                    {
+                        AtkMonsterList.Add(MonsterList[i]);
+                    }
                 }
                 else
                 {
+                    Debug.Log("Red Ray" + MonsterList[i].name);
                     Gizmos.color = Color.red;
+
+                    if (AtkMonsterList.Contains(MonsterList[i]))
+                    {
+                        AtkMonsterList.Remove(MonsterList[i]);
+                    }
                 }
                 Gizmos.DrawRay(transform.position, MonsterList[i].transform.position - transform.position);
             }
@@ -110,14 +125,17 @@ public class PlayerTargeting : MonoBehaviour
             TargetDist = 100f;
             getATarget = true;
         }
+        else
+        {
+            getATarget = false;
+        }
     }
 
     void AtkTarget()
     {
-        if (getATarget && !JoyStickMovement.Instance.isPlayerMoving)
+        if (getATarget && !JoyStickMovement.Instance.isPlayerMoving && AtkMonsterList.Count != 0)
         {
             transform.LookAt(new Vector3(MonsterList[TargetIndex].transform.position.x, transform.position.y, MonsterList[TargetIndex].transform.position.z));
-            Attack();
 
             if (PlayerMovement.Instance.Anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
             {
@@ -134,6 +152,12 @@ public class PlayerTargeting : MonoBehaviour
                 PlayerMovement.Instance.Anim.SetBool("Idle", false);
                 PlayerMovement.Instance.Anim.SetBool("Walk", true);
             }
+        }
+        else if(AtkMonsterList.Count == 0)
+        {
+            PlayerMovement.Instance.Anim.SetBool("Attack", false);
+            PlayerMovement.Instance.Anim.SetBool("Walk", false);
+            PlayerMovement.Instance.Anim.SetBool("Idle", true);
         }
     }
 }
