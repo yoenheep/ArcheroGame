@@ -45,29 +45,15 @@ public class PlayerTargeting : MonoBehaviour
             for(int i = 0;i < MonsterList.Count; i++)
             {
                 RaycastHit hit;
-                bool isHit = Physics.Raycast(transform.position, MonsterList[i].transform.position - transform.position, out hit, 20f, layerMask);
-
-                Debug.Log(isHit);
+                bool isHit = Physics.Raycast(transform.position, MonsterList[i].transform.position - transform.position, out hit, 40f, layerMask);
 
                 if(isHit && hit.transform.CompareTag("Monster"))
                 {
-                    Debug.Log("blue Ray" + MonsterList[i].name);
                     Gizmos.color = Color.blue;
-
-                    if (!AtkMonsterList.Contains(MonsterList[i]))
-                    {
-                        AtkMonsterList.Add(MonsterList[i]);
-                    }
                 }
                 else
                 {
-                    Debug.Log("Red Ray" + MonsterList[i].name);
                     Gizmos.color = Color.red;
-
-                    if (AtkMonsterList.Contains(MonsterList[i]))
-                    {
-                        AtkMonsterList.Remove(MonsterList[i]);
-                    }
                 }
                 Gizmos.DrawRay(transform.position, MonsterList[i].transform.position - transform.position);
             }
@@ -78,12 +64,40 @@ public class PlayerTargeting : MonoBehaviour
     {
         SetTarget();
         AtkTarget();
+        UpdateOnDrawGizmos();
     }
 
     void Attack()
     {
         PlayerMovement.Instance.Anim.SetFloat("AttackSpd", atkSpd);
         Instantiate(PlayerBolt, AttackPoint.position, transform.rotation);
+    }
+
+    void UpdateOnDrawGizmos()
+    {
+        if (getATarget)
+        {
+            for (int i = 0; i < MonsterList.Count; i++)
+            {
+                RaycastHit hit;
+                bool isHit = Physics.Raycast(transform.position, MonsterList[i].transform.position - transform.position, out hit, 40f, layerMask);
+
+                if (isHit && hit.transform.CompareTag("Monster"))
+                {
+                    if (!AtkMonsterList.Contains(MonsterList[i]))
+                    {
+                        AtkMonsterList.Add(MonsterList[i]);
+                    }
+                }
+                else
+                {
+                    if (AtkMonsterList.Contains(MonsterList[i]))
+                    {
+                        AtkMonsterList.Remove(MonsterList[i]);
+                    }
+                }
+            }
+        }
     }
 
     void SetTarget()
