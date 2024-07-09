@@ -73,7 +73,6 @@ public class EnemyMeleeFSM : EnemyBase
     {
         yield return null;
 
-        Debug.Log("Enemy Attack");
         nvAgent.stoppingDistance = 0f;
         nvAgent.isStopped = true;
         nvAgent.SetDestination(Player.transform.position);

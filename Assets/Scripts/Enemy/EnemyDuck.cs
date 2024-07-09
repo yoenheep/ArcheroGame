@@ -21,8 +21,8 @@ public class EnemyDuck : EnemyMeleeFSM
         attackCoolTime = 2f;
         attackCoolTimeCacl = attackCoolTime;
 
-        attackRange = 2.5f;
-        nvAgent.stoppingDistance = 2.5f;
+        attackRange = 4f;
+        nvAgent.stoppingDistance = 4f;
 
         StartCoroutine(ResetAtkArea());
     }
@@ -59,7 +59,8 @@ public class EnemyDuck : EnemyMeleeFSM
             nvAgent.isStopped = true;
 
             rb.gameObject.SetActive(false);
-            PlayerTargeting.Instance.MonsterList.Remove(transform.parent.gameObject);
+            PlayerTargeting.Instance.MonsterList.Remove(transform.gameObject);
+            PlayerTargeting.Instance.AtkMonsterList.Remove(transform.gameObject);
             PlayerTargeting.Instance.TargetIndex = -1;
             Destroy(transform.parent.gameObject);
             return;

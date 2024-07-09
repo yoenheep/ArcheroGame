@@ -45,7 +45,7 @@ public class PlayerTargeting : MonoBehaviour
             for(int i = 0;i < MonsterList.Count; i++)
             {
                 RaycastHit hit;
-                bool isHit = Physics.Raycast(transform.position, MonsterList[i].transform.position - transform.position, out hit, 60f, layerMask);
+                bool isHit = Physics.Raycast(transform.position, MonsterList[i].transform.position - transform.position, out hit, 10f, layerMask);
 
                 if(isHit && hit.transform.CompareTag("Monster"))
                 {
@@ -80,7 +80,7 @@ public class PlayerTargeting : MonoBehaviour
             for (int i = 0; i < MonsterList.Count; i++)
             {
                 RaycastHit hit;
-                bool isHit = Physics.Raycast(transform.position, MonsterList[i].transform.position - transform.position, out hit, 60f, layerMask);
+                bool isHit = Physics.Raycast(transform.position, MonsterList[i].transform.position - transform.position, out hit, 10f, layerMask);
 
                 if (isHit && hit.transform.CompareTag("Monster"))
                 {

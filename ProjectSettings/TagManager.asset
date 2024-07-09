@@ -7,9 +7,9 @@ TagManager:
   - Monster
   - Wall
   - NextRoom
-  - Potato
   - MeleeAtk
   - HpBooster
+  - Potato
   layers:
   - Default
   - TransparentFX
