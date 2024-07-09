@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e66bc40c2ea822648a99b61f4f3c7b0b, type: 3}
+      propertyPath: m_TagString
+      value: Potato
+      objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: e66bc40c2ea822648a99b61f4f3c7b0b, type: 3}
       propertyPath: m_Layer
       value: 8

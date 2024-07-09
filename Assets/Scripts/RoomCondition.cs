@@ -48,8 +48,8 @@ public class RoomCondition : MonoBehaviour
         }
         if (other.CompareTag("Monster"))
         {
-            MonsterListInRoom.Add(other.gameObject);
-            Debug.Log("Mob name ;" + other.gameObject);
+            MonsterListInRoom.Add(other.transform.parent.gameObject);
+            Debug.Log("Mob name ;" + other.transform.parent.gameObject);
         }
     }
 
@@ -62,7 +62,7 @@ public class RoomCondition : MonoBehaviour
         }
         if (other.CompareTag("Monster"))
         {
-            MonsterListInRoom.Remove(other.gameObject);
+            MonsterListInRoom.Remove(other.transform.parent.gameObject);
         }
     }
 }
