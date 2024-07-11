@@ -38,13 +38,19 @@ public class RoomCondition : MonoBehaviour
         }
     }
 
+    void PlayerEnterRoom()
+    {
+        playerInThisRoom = true;
+        PlayerTargeting.Instance.MonsterList = new List<GameObject>(MonsterListInRoom);
+        Debug.Log("Enter New Room, Mob Count : " + PlayerTargeting.Instance.MonsterList.Count);
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            playerInThisRoom = true;
-            PlayerTargeting.Instance.MonsterList = new List<GameObject>(MonsterListInRoom);
-            Debug.Log("Enter New Room, Mob Count : " + PlayerTargeting.Instance.MonsterList.Count);
+            Invoke("PlayerEnterRoom", 0.1f);
         }
         if (other.CompareTag("Monster"))
         {
