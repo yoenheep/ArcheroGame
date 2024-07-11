@@ -10,6 +10,7 @@ TagManager:
   - MeleeAtk
   - HpBooster
   - Potato
+  - RangeAtk
   layers:
   - Default
   - TransparentFX
@@ -20,9 +21,9 @@ TagManager:
   - 
   - Room
   - Potato
-  - 
-  - 
-  - 
+  - Wall
+  - Enemy
+  - EnemyWeapon
   - 
   - 
   - 
